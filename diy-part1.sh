@@ -10,7 +10,6 @@
 # See /LICENSE for more information.
 #
 
-# 清空旧自定义源，杜绝重复源报错
 sed -i '/^src-git /d' feeds.conf.default
 
 add_feed(){
@@ -31,6 +30,6 @@ add_feed "push"          "src-git push https://github.com/zzsj001/luci-app-pushd
 add_feed "wechatpush"    "src-git wechatpush https://github.com/tty228/luci-app-wechatpush.git"
 add_feed "alist"         "src-git alist https://github.com/sirpdboy/luci-app-alist.git"
 add_feed "easycloud"     "src-git easycloud https://github.com/linkease/istore-packages.git"
-# 重要：turboacc不在这里添加，放到diy‑part2本地拉取，不能作为feeds源
+# turboacc 禁止写在这里！交由diy‑part2脚本拉取到package目录
 
 ./scripts/feeds update -a
