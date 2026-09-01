@@ -10,10 +10,9 @@
 # See /LICENSE for more information.
 #
 
-# ========== 清理全部旧的src‑git源，避免重复报错 ==========
+# 清空旧自定义源，杜绝重复源报错
 sed -i '/^src-git /d' feeds.conf.default
 
-# 函数：仅当源不存在时才添加，防止重复
 add_feed(){
     local name="$1"
     local line="$2"
@@ -22,7 +21,6 @@ add_feed(){
     fi
 }
 
-# 增加需要的插件源
 add_feed "helloworld"    "src-git helloworld https://github.com/fw876/helloworld"
 add_feed "istore"        "src-git istore https://github.com/istoreos/istoreos-feeds.git;main"
 add_feed "passwall"      "src-git passwall https://github.com/xiaorouji/openwrt-passwall.git;main"
@@ -33,6 +31,6 @@ add_feed "push"          "src-git push https://github.com/zzsj001/luci-app-pushd
 add_feed "wechatpush"    "src-git wechatpush https://github.com/tty228/luci-app-wechatpush.git"
 add_feed "alist"         "src-git alist https://github.com/sirpdboy/luci-app-alist.git"
 add_feed "easycloud"     "src-git easycloud https://github.com/linkease/istore-packages.git"
-add_feed "turboacc"      "src-git turboacc https://github.com/chenmozhijin/turboacc.git"
+# 重要：turboacc不在这里添加，放到diy‑part2本地拉取，不能作为feeds源
 
 ./scripts/feeds update -a
